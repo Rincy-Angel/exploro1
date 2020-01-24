@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+<title>contact form</title>
+<link rel="stylesheet"  type="text/css" href="cf.css">
+</head>
+<body>
+  <div class="loginbox">
+    <img src="men.jpg" class="avatar"/>
+  <form method="post" action="send_message.php" id="loginForm">
+<p> Name:</p> <br>
+  <input id="name" name="name" type="text"><br>
+
+  <p>E-mail:</p> <br>
+  <input id="email" name="email" type="text"><br>
+  <p>Subject:</p> <br>
+  <input id="subject" name="subject" type="text"><br>
+  <p>Message:</p> <br>
+  <textarea cols="33" rows="5"  id="message" name="message"></textarea><br><br>
+  <input if="btn_send" type="submit" value="Send message">
+  <span class="response"></span>
+
+</form>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+  var form= $("#loginForm");
+  form.submit(function(e){
+    $(this).attr("disabled","disabled");
+    e.preventDefault();
+    $.ajax({
+      type: form.attr("method"),
+      url: form.attr('action'),
+      data: form.serialize(),
+      dataType:"json",
+      success:function(data){
+        $(".response").text(data.content);
+      },
+      error: function(data){
+        $(".response").text("An error occured");
+      }
+    });
+  });
+});
+</script>
+
+</html>

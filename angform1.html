@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Real Estate</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="realEstateApp/site.css" rel="stylesheet" />
+</head>
+<body ng-app="realestateApp" class="ng-scope">
+    <div class="panel panel-default">
+
+        <div class="container" ng-controller="tenantsController" ngcloak>
+            <h1>Tenants</h1>
+            <div class="row">
+                <div>
+                    <button class="btn btn-primary" ng-click="previousTenant()">
+                        Previous
+                    </button>
+                    <button class="btn btn-primary" ng-click="nextTenant()">
+                        Next
+                    </button>
+                    <button class="btn btn-success" ng-click="addTenant()">
+                        Add
+                    </button>
+                    <button class="btn btn-danger" ng-click="deleteTenant()">
+                        Delete
+                    </button>
+                    <br style="clear:both">
+                    <br>
+                </div>
+            </div>
+            <form name="tenantForm" style="width: 500px">
+                <div class="row">
+                    <div ng-repeat="tenant in tenant">
+                        <div>
+                            <label>First Name: </label>
+                            <input type="text"
+
+                                   placeholder="First Name"
+
+                                   name="FirstName"
+
+                                   ng-model="tenant.FirstName"
+
+                                   ng-minlength=3
+
+                                   ng-maxlength=20 required />
+                        </div>
+                        <div class="error-container"
+
+                             ng-show="tenantForm.FirstName.$dirty && tenantForm.FirstName.$invalid">
+                            <small class="text-danger"
+
+                                   ng-show="tenantForm.FirstName.$error.required">
+                                Your name is required.
+                            </small>
+                            <small class="text-danger"
+
+                                   ng-show="tenantForm.FirstName.$error.minlength">
+                                Your name is required to be at least 3 characters
+                            </small>
+                            <small class="text-danger"
+
+                                   ng-show="tenantForm.FirstName.$error.maxlength">
+                                Your name cannot be longer than 20 characters
+                            </small>
+                        </div>
+                        <div>
+                            <label>Home Phone:</label>
+                            <input type="number"
+
+                                   placeholder="Home Phone"
+
+                                   name="HomePhone"
+
+                                   ng-model="tenant.HomePhone"
+
+                                   ng-minlength=7
+
+                                   ng-maxlength=10 required />
+                        </div>
+                            <div class="error-container"
+
+                                 ng-show="tenantForm.HomePhone.$dirty && tenantForm.HomePhone.$invalid">
+                                <small class="text-danger"
+
+                                       ng-show="tenantForm.HomePhone.$error.required">
+                                    Your home phone is required.
+                                </small>
+                                <small class="text-danger"
+
+                                       ng-show="tenantForm.HomePhone.$error.minlength">
+                                    Your home phone is required to be at least 7 digits
+                                </small>
+                                <small class="text-danger"
+
+                                       ng-show="tenantForm.HomePhone.$error.maxlength">
+                                    Your home phone cannot be longer than 10 digits
+                                </small>
+                                <small class="text-danger"
+
+                                       ng-show="tenantForm.HomePhone.$error.number">
+                                    Your home phone cannot be characters
+                                </small>
+                            </div>
+                            <div>
+                                <label>Email:</label>
+                                <input type="email"
+
+                                       placeholder="Email"
+
+                                       name="Email"
+
+                                       ng-model="tenant.Email"
+
+                                       required />
+                            </div>
+                            <div class="error-container"
+
+                                 ng-show="tenantForm.Email.$dirty && tenantForm.Email.$invalid">
+                                <small class="text-danger"
+
+                                       ng-show="tenantForm.Email.$error.required">
+                                    Your email is required.
+                                </small>
+                                <small class="text-danger"
+
+                                       ng-show="tenantForm.Email.$error.email">
+                                    Your email is not valid
+                                </small>
+                            </div>
+                            <div>
+                                <label>Webpage:</label>
+                                <input class="input-large"
+
+                                       type="url"
+
+                                       placeholder="Webpage"
+
+                                       name="Webpage"
+
+                                       ng-model="tenant.Webpage"
+
+                                       required />
+                            </div>
+                            <div class="error-container"
+
+                                 ng-show="tenantForm.Webpage.$dirty && tenantForm.Webpage.$invalid">
+                                <small class="text-danger"
+
+                                       ng-show="tenantForm.Webpage.$error.required">
+                                    Your webpage is required.
+                                </small>
+                                <small class="text-danger"
+
+                                       ng-show="tenantForm.Webpage.$error.url">
+                                    Your webpage is not valid
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="realEstateApp/realestateApp.js"></script>
+    <script src="realEstateApp/controllers/tenantsController.js"></script>
+    <script src="realEstateApp/services/tenantService.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+<title>Login form</title>
+<link rel="stylesheet"  type="text/css" href="lf.css">
+</head>
+<body>
+  <div class="loginbox">
+    <img src="men.jpg" class="avatar"/>
+  <h1> Login Here</h1>
+  <form method="post" action="send_message.php" id="contactForm">
+  <p>Name:</p> <br>
+  <input id="name" name="name" placeholder="UserName" type="text"><br>
+  <p>Password:</p> <br>
+  <input id="password" name="password"  placeholder="password"type="password"><br>
+
+  <p>E-mail:</p> <br>
+  <input id="email" name="email"  placeholder="Email" type="text"><br>
+
+  <input if="btn_send" type="submit" value="Login">
+  <span class="response"></span>
+
+</form>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(function(){
+  var form= $("#contactForm");
+  form.submit(function(e){
+    $(this).attr("disabled","disabled");
+    e.preventDefault();
+    $.ajax({
+      type: form.attr("method"),
+      url: form.attr('action'),
+      data: form.serialize(),
+      dataType:"json",
+      success:function(data){
+        $(".response").text(data.content);
+      },
+      error: function(data){
+        $(".response").text("An error occured");
+      }
+    });
+  });
+});
+</script>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta  http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+  <title>John students</title>
+  <link href="ph.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script>
+/*    $.getJSON('articles.json',function(data){
+      console.log(data);*/
+      $.ajax({
+        url: 'articles1.json',
+        dataType:'json',
+        type: 'get',
+        cache: false,
+        success: function(){
+        $(data.articles).each(function(index,value){
+          console.log(value.Id);
+          console.log(value.Name);
+          console.log(value.Subject);
+        });
+        }
+      });
+
+
+
+
+    });
+  </script>
+
+  </head>
+  <body>
+    <h1>Phil's Profile</h1>
+    <h1>Students Of Phil</h1>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Subject</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Arya</td>
+        <td>CSS3</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Ben</td>
+        <td>CSS3</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Harry</td>
+        <td>CSS3</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Luke</td>
+        <td>CSS3</td>
+      </tr>
+
+
+    </body>
+    <button type="button" onclick="window.location='sorting.html'">VIEW RESULTS</button>
+</html>

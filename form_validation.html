@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>Validation</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <br />
+    <h3 align="center">Login Form</h3>
+    <br />
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+        <span id="success_message"></span>
+        <form method="POST" action="Form_validation.php" id="contact_form">
+      <p> Name:</p> <br>
+      <div class="form-group">
+        <input id="name" name="name" type="text" placeholder="UserName" class="form-control"><br>
+      <b id="name_error" class="form-text text-danger"></b>
+    </div>
+        <p>E-mail:</p> <br>
+          <div class="form-group">
+        <input id="email" name="email" type="text" placeholder="E-mail"class="form-control"><br>
+        <b id="email_error" class="form-text text_danger"></b>
+      </div>
+        <p>Subject:</p> <br>
+          <div class="form-group">
+        <input id="subject" name="subject" type="text" placeholder="Subject"class="form-control"><br>
+        <b id="subject_error" class="form-text text-danger"></b>
+      </div>
+        <p>Message:</p> <br>
+          <div class="form-group">
+        <textarea cols="33" rows="5"  id="message" name="message" placeholder="Message" class="form-control"></textarea><br><br>
+        <b id="message_error" class="form-text text-danger"></b>
+      </div>
+      <div class="form-group">
+        <input id="contact" type="submit" value="Send message" name="submit" class="btn-btn-success">
+      </div>
+      </form>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+</body>
+</html>
+
+<script>
+  $(document).ready(function(){
+    $('#contact_form').click(function(event){
+      event.preventDefault();
+    /*  $.ajax({
+        url:"<?php echo base_url(); ?>form_validation/validation",
+        method:"POST",
+        data:$(this).serialize();
+        dataType:"json",
+        beforeSend:function(){
+          $('#contact').attr('disabled','disabled');
+        },
+        success:function(data){*/
+          if($("name").val()==''){
+
+              $('#name_error').html('*Name is required');
+              return false;
+          }
+            else{
+              $('#name_error').html('');
+            }
+            if(data.email_error !=''){
+              $('#email_error').html(data.email_error);
+            }
+            else{
+              $('#email_error').html('');
+            }
+            if(data.subject_error !=''){
+              $('subject_error').html(data.subject_error);
+            }
+            else{
+              $('#subject_error').html('');
+            }
+            if(data.message_error !=''){
+              $('#message_error').html(data.message_error);
+            }
+            else{
+              $('#message_error').html('');
+            }
+          }
+          if(data.success){
+            $('#success_message').html(data.success);
+            $('#name_error').html('');
+            $('#email_error').html('');
+            $('#subject_error').html('');
+            $('#message_error').html('');
+            $('#contact_form')[0].reset();
+          }
+          $('#contact').attr('disabled',false);
+        }
+      })
+    });
+  });
+</script>

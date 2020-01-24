@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script>
+ var myApp = angular.module("myModule", []);
+    myApp.controller("myController", function($scope) {
+    var emp = [
+    {name: "Sam", age: "40", designation: "HOD",experienceinyears: "10"},
+    {name: "David", age: "30", designation: "PROFESSOR",experienceinyears: "5"},
+    {name: "Ram", age: "25", designation: "ASSOCIATEPROFESSOR",experienceinyears: "3"},
+    {name: "John", age: "28", designation: "TUTOR",experienceinyears: "1"},
+    {name: "Phil", age: "30", designation: "PROFESSOR",experienceinyears: "7"},
+    {name: "Mary", age: "45", designation: "ASSOCIATEPROFESSOR",experienceinyears: "2"}
+   ];
+   $scope.employee = emp;
+ });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/
+        angular.min.js"> </script>
+        <style>
+
+
+        table{
+          border-collapse: collapse;
+          width:70%;
+          margin:auto;
+        }
+        th{
+          background-color: #B40404;
+          color:white;
+        }
+        th,td{
+          text-align: center;
+          font-size:20px;
+          height: 40px;
+          border: 1px solid gray;
+        }
+        tr:nth-child(even){
+          background-color: #F79F81;
+        }
+        tr:nth-child(odd){
+          background-color:#FA5858;
+        }
+        h1{
+          text-align: center;
+
+        }
+
+        </style>
+</head>
+<body>
+<div ng-controller="myController">
+ <input type="text" ng-model="searchText" /><br />
+ <h1>Search For Professor</h1>
+ <table>
+ <thead>
+ <tr>
+ <th>Name</th>
+ <th>Age</th>
+ <th>Designation</th>
+ <th>Experience In Years</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+
+ </tr>
+ <tr ng-repeat="e in employee | filter:searchText | orderBy: 'name' : false">
+ <td>{{e.name | uppercase}}</td>
+ <td>{{e.age}}</td>
+ <td>{{e.designation}}</td>
+ <td>{{e.experienceinyears}}</td>
+ </tr>
+ <tr />
+ <tr />
+ <tr />
+ <tr />
+
+ </tbody>
+ </table>
+ </div>
+ </body>
+ </html>

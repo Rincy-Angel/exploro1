@@ -1,0 +1,25 @@
+table{
+  border-collapse: collapse;
+  width:70%;
+  margin:auto;
+}
+th{
+  background-color: #6dac57;
+  color:white;
+}
+th,td{
+  text-align: center;
+  font-size:20px;
+  height: 40px;
+  border: 1px solid gray;
+}
+tr:nth-child(even){
+  background-color: #c6e0b4;
+}
+tr:nth-child(odd){
+  background-color: #e2efda;
+}
+h1{
+  text-align: center;
+  
+}

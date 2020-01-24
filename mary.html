@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta  http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+  <title>John students</title>
+  <link href="ma.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script>
+/*    $.getJSON('articles.json',function(data){
+      console.log(data);*/
+      $.ajax({
+        url: 'articles1.json',
+        dataType:'json',
+        type: 'get',
+        cache: false,
+        success: function(){
+        $(data.articles).each(function(index,value){
+          console.log(value.Id);
+          console.log(value.Name);
+          console.log(value.Subject);
+        });
+        }
+      });
+
+
+
+
+    });
+  </script>
+
+
+
+
+
+
+
+  </head>
+  <body>
+    <h1>Mary's Profile</h1>
+    <h1>Students Of Mary</h1>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Subject</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Clara</td>
+        <td>HTML</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Emy</td>
+        <td>HTML</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Julie</td>
+        <td>HTML</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Akbar</td>
+        <td>HTML</td>
+      </tr>
+  <button type="button" onclick="window.location='sorting2.html'">VIEW RESULTS</button>
+
+    </body>
+</html>

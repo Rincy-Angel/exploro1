@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>Validation</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <br />
+    <h3 align="center">Login Form</h3>
+    <br />
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+        <span id="success_message"></span>
+        <form method="post"  id="contact_form">
+      <p> Name:</p> <br>
+        <input id="name" name="name" type="text" placeholder="UserName"><br>
+      <span id="name_error" class="text-danger"></span>
+        <p>E-mail:</p> <br>
+        <input id="email" name="email" type="text" placeholder="E-mail"><br>
+        <span id="email_error" class="text_danger"></span>
+        <p>Subject:</p> <br>
+        <input id="subject" name="subject" type="text" placeholder="Subject"><br>
+        <span id="subject_error" class="text-danger"></span>
+        <p>Message:</p> <br>
+        <textarea cols="33" rows="5"  id="message" name="message" placeholder="Message"></textarea><br><br>
+        <span id="message_error" class="text-danger"></span>
+        <input id="contact" type="submit" value="Send message" class="btn-btn-info">
+      </form>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+</body>
+</html>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#contact_form').on('submit',function(event){
+      event.preventDefault();
+      $.ajax({
+        url:"<?php echo base_url(); ?>fvalid",
+        method:"POST",
+        data:$(this).serialize();
+        dataType:"json",
+        beforeSend:function(){
+          $('#contact').attr('disabled','disabled');
+        },
+        success:function(data){
+          if(data.error){
+            if(data.name_error !=''){
+              $('#name_error').html(data.name_error);
+            }
+            else{
+              $('#name_error').html('');
+            }
+            if(data.email_error !=''){
+              $('#email_error').html(data.email_error);
+            }
+            else{
+              $('#email_error').html('');
+            }
+            if(data.subject_error !=''){
+              $('subject_error').html(data.subject_error);
+            }
+            else{
+              $('#subject_error').html('');
+            }
+            if(data.message_error !=''){
+              $('#message_error').html(data.message_error);
+            }
+            else{
+              $('#message_error').html('');
+            }
+          }
+          if(data.success){
+            $('#success_message').html(data.success);
+            $('#name_error').html('');
+            $('#email_error').html('');
+            $('#subject_error').html('');
+            $('#message_error').html('');
+            $('#contact_form')[0].reset();
+          }
+          $('#contact').attr('disabledx')
+        }
+      })
+    });
+  });
+</script>

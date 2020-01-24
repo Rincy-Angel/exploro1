@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>CodePen - Login </title>
+
+  <link rel="stylesheet" href="reset1.css">
+
+    <link rel="stylesheet" href="style1.css" media="screen" type="text/css" />
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+   <script>
+   //Configuration
+         var minUserLen = 5, maxUserLen = 30;
+         var minPassLen = 8, maxPassLen = 4096;
+         var usernameMsg = "Username must be between " + minUserLen + " and " +
+                           maxUserLen + " characters, inclusive.";
+         var passwordMsg = "Password must be between " + minPassLen + " and " +
+                           maxPassLen + " characters, inclusive.";
+         jQuery.validator.setDefaults({
+            debug: true,      //Avoids form submit. Comment when in production.
+            success: "valid",
+            submitHandler: function() {
+               alert("Success! The form was pretend-submitted!");
+            }
+         });
+      $(document).ready(function() {
+         // validate signup form on keyup and submit
+         $("#signupForm").validate({
+            rules: {
+               username: {
+                  required: true,
+                  minlength: minUserLen,
+                  maxlength: maxUserLen
+
+               },
+               password: {
+                  required: true,
+                  minlength: minPassLen,
+                  maxlength: maxPassLen
+
+               },
+            },
+            messages: {
+               username: {
+                  required: "Username required",
+                  minlength: usernameMsg,
+                  maxlength: usernameMsg
+               },
+               password: {
+                  required: "Password required",
+                  minlength: passwordMsg,
+                  maxlength: passwordMsg
+               }
+            }
+         });
+      });
+   </script>
+    <script src="index1.js"></script>
+
+
+</head>
+
+<body>
+
+  <div class="wrap">
+		<form id="signupForm">
+
+		<fieldset>
+         <p>
+            <label for="username">Username</label><br><br>
+            <input id="username" name="username" type="text">
+         </p><br><br><br>
+         <p>
+            <label for="password">Password</label><br><br>
+            <input id="password" name="password" type="password">
+         </p><br><br><br>
+         <p>
+            <input class="submit" type="submit" value="Submit">
+
+         </p>
+         
+      </fieldset>
+   </form>
+	</div>
+
+  <script src="js1/index1.js"></script>
+
+</body>
+
+</html>
